@@ -136,7 +136,7 @@ body{ font-family:'Jost',sans-serif; background:#000; color:var(--ink); line-hei
 
 /* CLIENTS — black cards, logos forced white */
 .brands-section{ max-width:1100px; margin:0 auto; }
-.brands-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(201,169,110,0.15); }
+.brands-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:#000; }
 .brand-cell{
   background:#000;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -168,21 +168,53 @@ footer{ background:#000; color:rgba(250,246,241,0.3); text-align:center; padding
 .scene.visible{ opacity:1; transform:none; }
 
 @media(max-width:900px){
-  #nav{ padding:16px 20px; }
+  /* NAV — smaller text so it doesn't cramp */
+  #nav{ padding:14px 16px; }
+  .nav-wordmark{ font-size:16px; }
+  .nav-links{ gap:16px; }
+  .nav-links a{ font-size:10px; letter-spacing:0.06em; }
+
+  /* HERO — add space above eyebrow */
+  .hero{ padding:120px 24px 64px; }
+  .hero-eyebrow{ margin-bottom:20px; }
+
+  /* SECTIONS */
   .section{ padding:60px 24px; }
-  .hero{ padding:100px 28px 64px; }
   .about-grid{ grid-template-columns:1fr; gap:48px; }
   .about-photo-wrap{ max-width:300px; margin:0 auto; }
-  .edu-grid{ grid-template-columns:1fr 1fr; }
+
+  /* EDUCATION — 3 cols on mobile doesn't work, make it a single column */
+  .edu-grid{ grid-template-columns:1fr; }
+
+  /* FILM */
   .film-body,.sahy-lead,.bim-intro,.data-intro{ grid-template-columns:1fr; gap:40px; }
   .sahy-full-row,.sahy-small-row{ grid-template-columns:1fr; }
+
+  /* SAHY lead image — centre it */
+  .sahy-lead img:first-child{ margin-left:0; width:100%; object-position:center center; }
+
+  /* BIM */
   .bim-rect-grid{ grid-template-columns:1fr 1fr; }
   .bim-sq-grid{ grid-template-columns:repeat(3,1fr); }
+
+  /* BRANDS GRID — 2 cols, last item centred if odd */
   .brands-grid{ grid-template-columns:1fr 1fr; }
+  .brand-cell:last-child:nth-child(odd){ grid-column: 1 / -1; width:50%; margin:0 auto; background:#000; }
+
+  /* CHAPTER PLATES */
   .chapter-plate{ padding:36px 24px; }
   .chapter-num{ font-size:60px; }
+
+  /* STATS */
   .stats-bar{ flex-wrap:wrap; }
   .stat-item{ min-width:50%; border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); }
+
+  /* CONTACT — prevent cutoff */
+  .credits-frame{ padding:0 24px; }
+  .credits-heading{ font-size:clamp(36px,10vw,64px); }
+  .credit-row{ flex-direction:column; gap:4px; }
+  .credit-role{ width:auto; }
+  .credits-cta{ flex-direction:column; align-items:center; }
 }
 
 
@@ -255,8 +287,17 @@ html { scroll-behavior: smooth; }
 
 /* ── SAHY LEAD IMAGE BLEEDS ── */
 .sahy-lead img:first-child {
-  margin-left: calc(-64px);
-  width: calc(100% + 64px);
+  width: 100%;
+  display: block;
+}
+
+@media(max-width:900px){
+  .sahy-lead img:first-child {
+    margin-left: 0;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
 </style>
@@ -356,7 +397,7 @@ html { scroll-behavior: smooth; }
   <div class="chapter-num">I</div>
   <div class="chapter-meta">
     <h2 class="chapter-title">Film & Industry Content</h2>
-    <p class="chapter-sub">Angaston Tourism Film · SA Hydrogen Conference</p>
+    <p class="chapter-sub">Angaston Tourism Award Film · SA Hydrogen Conference</p>
   </div>
 </div>
 
@@ -367,10 +408,15 @@ html { scroll-behavior: smooth; }
 </div>
     <div class="film-body">
       <div class="film-copy">
-        <p class="eyebrow">ACE Productions · Angaston, Barossa Valley · 2024</p>
-        <h3>A Town Film. $1,000 Budget. 26,000 Views.</h3>
-        <p>Commissioned and paid $1,000 to direct, film, and edit a promotional reel for the town of Angaston. Shot on location with no additional production spend. The film reached an audience more than eight times the size of the town's social following, driven entirely by organic shares.</p>
-        <p>The film captured Angaston's landscape, vineyards, and community character. It became the anchor piece of the town's digital presence, posted on the Angaston Facebook page.</p>
+        <p class="eyebrow">ACE Productions · Angaston, Barossa Valley · 2021</p>
+        <h3>A Tourism Film. $1,000 Budget. 26,000 Views.</h3>
+        <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold);padding:8px 20px;margin-bottom:20px;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);">Finalist</span>
+          <span style="width:1px;height:14px;background:rgba(201,169,110,0.4);display:block;"></span>
+          <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--merlot);font-weight:600;">2021 SA Top Tourism Town Award</span>
+        </div>
+        <p>Commissioned to direct, film, and edit a promotional entry video for Angaston's bid in the SA Top Tourism Town Award — a state-wide competition run by the Local Government Association of SA. Shot on location with no additional production spend. The film reached an audience more than eight times the size of the town's social following, driven entirely by organic shares.</p>
+        <p>The film captured Angaston's landscape, vineyards, and community — and helped the town reach the finals of the award. It became the anchor piece of the town's digital presence, posted on the Angaston Facebook page as part of the award campaign.</p>
         <p>434 shares meant the video was actively passed between people — not just seen. That's the difference between reach and resonance.</p>
         <a href="https://www.facebook.com/reel/973161442894529" target="_blank" class="project-link">Watch on Facebook →</a>
       </div>
